@@ -1,4 +1,3 @@
-
 with open('input_2015_2.txt') as file:
     content = file.readlines()
 
