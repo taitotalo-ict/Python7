@@ -1,6 +1,6 @@
-file = open('input_2015_2.txt')
-content = file.readlines()
-file.close()
+
+with open('input_2015_2.txt') as file:
+    content = file.readlines()
 
 total_gift_paper = 0
 for row in content:
