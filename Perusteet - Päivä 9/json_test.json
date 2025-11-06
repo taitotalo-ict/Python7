@@ -1,0 +1,19 @@
+{
+    "henkilöt": [
+        {
+            "nimi": "Christian",
+            "ikä": 35,
+            "kaupunki": "Helsinki"
+        },
+        {
+            "nimi": "Anna",
+            "ikä": 28,
+            "kaupunki": "Tampere"
+        },
+        {
+            "nimi": "Mikko",
+            "ikä": 42,
+            "kaupunki": "Oulu"
+        }
+    ]
+}
