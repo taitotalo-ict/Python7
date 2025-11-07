@@ -1,4 +1,6 @@
 from pathlib import Path
+
+
 SCRIPT_ROOT = Path(__file__).parent
 
 with open(SCRIPT_ROOT / 'input_2015_2.txt') as file:
