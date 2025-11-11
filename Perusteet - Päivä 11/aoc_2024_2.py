@@ -17,8 +17,8 @@ def is_negative_between_1_and_3(num: int) -> bool:
 
 def is_safe(report: tuple[int, ...]) -> bool:
     diffs = [report[index+1] - report[index] for index in range(len(report)-1)]
-    return all(map(is_between_1_and_3, diffs)) or \
-           all(map(is_negative_between_1_and_3, diffs))
+    return all(map(lambda num: 0 < num < 4, diffs)) or \
+           all(map(lambda num: 0 > num > -4, diffs))
 
     # is_negative = diffs[0] < 0
     # for diff in diffs:
