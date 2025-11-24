@@ -8,9 +8,12 @@ class Student:
     def _full_name(self) -> str:
         return f'{self.first_name} {self.last_name}'
 
-    def add_course(self, course_name: str) -> None:
-        self._completed_courses.append(course_name)
-
+    # def add_course(self, course_name: str) -> None:
+    #     self._completed_courses.append(course_name)
+        
+    def add_course(self, *courses) -> None:
+        self._completed_courses.extend(courses)
+    
     def add_courses(self, course_list: list|tuple) -> None:
         self._completed_courses.extend(course_list)
         
@@ -27,5 +30,5 @@ christian = Student('Christian', 'Finnberg')
 # christian.add_course('Python')
 # christian.add_course('Linux')
 #christian.add_courses(['Python', 'Linux'])
-#christian.add_courses('Python', 'Linux')
+christian.add_course('Python', 'Linux')
 christian.print_courses()
