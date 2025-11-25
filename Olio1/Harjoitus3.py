@@ -24,7 +24,7 @@ class Student:
                 print(f'- {course_name}')
         else:
             print(f'Student {self._full_name()} has not completed any courses yet.')
-            
+
 
 christian = Student('Christian', 'Finnberg')
 # christian.add_course('Python')
