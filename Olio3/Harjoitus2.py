@@ -4,10 +4,10 @@ class Person:
         self.last_name = last_name
     
     def __repr__(self) -> str:
-        return f'Person({self.first_name}, {self.last_name})'
+        return f'{self.__class__.__name__}("{self.first_name}", "{self.last_name}")'
     
     def __str__(self) -> str:
-        return f'<Person {self.first_name} {self.last_name}>'
+        return f'<{self.__class__.__name__} {self.first_name} {self.last_name}>'
 
 class Student(Person):
     _count = 0
@@ -18,7 +18,7 @@ class Student(Person):
         self.email = f'{first_name[0].lower()}{last_name[0].lower()}{self.student_id:06}@edu.taitotalo.fi'
 
     def __str__(self) -> str:
-        return f'<Student {self.first_name} {self.last_name} ({self.student_id})>'
+        return f'<{self.__class__.__name__} {self.first_name} {self.last_name} ({self.student_id})>'
 
 class Teacher(Person):
     def __init__(self, first_name: str, last_name: str, subject: str) -> None:
@@ -26,8 +26,8 @@ class Teacher(Person):
         self.subject = subject
         self.email = f'{first_name.lower()}.{last_name.lower()}@taitotalo.fi'
 
-    def __str__(self) -> str:
-        return f'<Teacher {self.first_name} {self.last_name}>'
+    # def __str__(self) -> str:
+    #     return f'<Teacher {self.first_name} {self.last_name}>'
 
 mika = Person('Mika', 'Suomalainen')
 print(mika)
