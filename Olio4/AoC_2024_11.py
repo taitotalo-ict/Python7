@@ -1,3 +1,6 @@
+from functools import cache
+
+@cache
 def blink(stone: str, count: int) -> int:
     if count == 0:
         return 1
