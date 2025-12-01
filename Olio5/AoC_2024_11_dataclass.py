@@ -1,8 +1,9 @@
+from dataclasses import dataclass
 from functools import cache
 
+@dataclass(frozen=True)
 class Stone:
-    def __init__(self, value: int) -> None:
-        self.value = value
+    value : int
 
     @classmethod
     def from_str(cls, value: str) -> 'Stone':
@@ -29,15 +30,6 @@ class Stone:
             case _:                             # Parillinen
                 return (Stone(self.upper_half), Stone(self.lower_half))
     
-    def __repr__(self) -> str:
-        return f'Stone({self.value})'
-    
-    def __eq__(self, other: 'Stone') -> bool:
-        return self.value == other.value
-    
-    def __hash__(self) -> int:
-        return hash(self.value)
-
 @cache
 def blink(stone: Stone, count: int) -> int:
     if count == 0:
@@ -55,8 +47,5 @@ def blink_cached(stone: Stone, count: int, cache: dict = {}) -> int:
 
 
 stones = '5688 62084 2 3248809 179 79 0 172169'
-# cache = {}
 print(sum(blink_cached(Stone.from_str(value), 25) for value in stones.split()))
-# print(len(cache))
 print(sum(blink_cached(Stone.from_str(value), 75) for value in stones.split()))
-# print(len(cache))
