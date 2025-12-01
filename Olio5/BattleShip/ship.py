@@ -24,8 +24,6 @@ class ShipPart:
 
 class Ship:
     def __init__(self, size:int, hidden:bool = False) -> None:
-        # self.size = size
-        # self.hidden = hidden
         self.parts = [ShipPart(self, hidden) for _ in range(size)]
 
     def is_destroyed(self):
