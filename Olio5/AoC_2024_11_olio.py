@@ -44,6 +44,20 @@ def blink(stone: Stone, count: int) -> int:
         return 1
     return sum(blink(new_stone, count-1) for new_stone in stone.change())
 
+def blink_cached(stone: Stone, count: int, cache: dict = {}) -> int:
+    if count == 0:
+        return 1
+    if cached_result := cache.get((stone.value, count), None):
+        return cached_result
+    cached_result = sum(blink_cached(new_stone, count-1, cache) for new_stone in stone.change())
+    cache[(stone.value, count)] = cached_result
+    return cached_result
+
+
+
 stones = '5688 62084 2 3248809 179 79 0 172169'
-print(sum(blink(Stone.from_str(value), 25) for value in stones.split()))
-print(sum(blink(Stone.from_str(value), 75) for value in stones.split()))
+cache = {}
+print(sum(blink_cached(Stone.from_str(value), 25, cache) for value in stones.split()))
+print(len(cache))
+print(sum(blink_cached(Stone.from_str(value), 75, cache) for value in stones.split()))
+print(len(cache))
