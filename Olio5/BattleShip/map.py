@@ -23,7 +23,11 @@ class Map:
     The map can be printed (or converted to a string) with the __str__ method.
     '''
     def __init__(self, width: int, height: int) -> None:
-        pass
+        self.width = width
+        self.height = height
+        self.squares = {Coordinates(x, y): Square() for x in range(width) for y in range(height)}
+        self.ships = {}
+
 
     def __contains__(self, coordinates: 'Coordinates') -> bool:
         '''Returns True if the map contains the given coordinates. False otherwise.'''
