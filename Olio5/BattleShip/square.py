@@ -6,19 +6,20 @@ if TYPE_CHECKING:
 
 class Sea:
     def __init__(self, square: 'Square') -> None:
-        pass
+        self.square = square
+        self.hit_status = False
 
     def hit(self) -> None:
         '''Sea receives a hit. Returns None.'''
-        pass
+        self.hit_status = True
 
     def is_hit(self) -> bool:
         '''Return True if this part of the sea has received a hit. False otherwise.'''
-        pass
+        return self.hit_status
 
     def __str__(self) -> str:
         '''Returns a character representing the sea: 'o' if hit, '·' if not hit.'''
-        pass
+        return 'o' if self.hit_status else '·'
 
 class Square:
     '''
@@ -26,24 +27,25 @@ class Square:
     Default is to contain a part of the sea. A part of a ship can be added later, but once added it can't be changed.
     '''
     def __init__(self) -> None:
-        pass
+        self.content = Sea(self)
 
     def is_empty(self) -> bool:
         '''Returns True is this square contains a part of the sea. False if there is a ship part in this space.'''
-        pass
+        return isinstance(self.content, Sea)
 
     def set_ship_part(self, ship_part: 'ShipPart') -> None:
         '''Sets this square to contain the given ship part. Returns None.'''
-        pass
+        if not self.is_empty():
+            raise Exception
+        self.content = ship_part
 
     def hit(self) -> 'Ship|None':
         '''Hits the content of this square and returns what that content returns (a ship if a ship part is hit or None if it is sea).'''
-        pass
-
+        return self.content.hit()
 
     def is_hit(self) -> bool:
         '''Returns whether this square has been hit already.'''
-        pass
+        return self.content.is_hit()
 
     def __str__(self) -> str:
         '''
@@ -53,8 +55,9 @@ class Square:
            - '#': Ship part that has not been hit.
            - 'X': Ship part that has been hit.
         '''
-        pass
+        return self.content.__str__()
+        # return str(self.content)
     
     def __repr__(self) -> str:
         '''Representation of the square.'''
-        pass
+        return f'<Square: {self.content}>'
