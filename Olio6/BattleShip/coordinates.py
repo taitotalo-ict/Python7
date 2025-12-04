@@ -41,3 +41,9 @@ class Coordinates:
     def __str__(self) -> str:
         '''Returns a string in the form "(X, Y)" of the coordinates.'''
         return f'({self.x}, {self.y})'
+    
+    def __eq__(self, other: 'Coordinates') -> bool:
+        return self.x == other.x and self.y == other.y
+
+    def __hash__(self):
+        return hash((self.x, self.y))
