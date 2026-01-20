@@ -1,4 +1,13 @@
-from PySide6.QtWidgets import QApplication, QWidget, QPushButton, QMainWindow, QLabel, QLineEdit, QCheckBox, QComboBox
+from PySide6.QtWidgets import (
+    QApplication,
+    QWidget,
+    QPushButton,
+    QMainWindow,
+    QLabel,
+    QLineEdit,
+    QCheckBox,
+    QComboBox,
+)
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -6,10 +15,23 @@ class MainWindow(QMainWindow):
 
         self.setWindowTitle('Minun ikkuna')
 
-        button = QPushButton('Paina mua')
+        self.button = QPushButton('Paina mua')
+        self.button.setCheckable(True)
+        self.button.clicked.connect(self.log_click)
+        self.button.clicked.connect(self.log_click2)
+        self.count = 0
 
-        self.setCentralWidget(button)
+        self.setCentralWidget(self.button)
         self.show()
+
+    def log_click(self, is_checked):
+        print(f'Button clicked ({is_checked})')
+        self.button.setText(f'Paina mua ({is_checked})')
+
+    def log_click2(self):
+        self.count += 1
+        print(f'Button has been click {self.count} times')
+        
 
 app = QApplication()
 
