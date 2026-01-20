@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
     QCheckBox,
     QComboBox,
 )
+from PySide6.QtCore import Qt
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -21,7 +22,17 @@ class MainWindow(QMainWindow):
         self.button.clicked.connect(self.log_click2)
         self.count = 0
 
-        self.setCentralWidget(self.button)
+        self.line_edit = QLineEdit('Title')
+        self.line_edit.textChanged.connect(self.setWindowTitle)
+
+        label = QLabel('Hello world')
+        font = label.font()
+        font.setPointSize(30)
+        label.setFont(font)
+
+        label.setAlignment(Qt.AlignmentFlag.AlignHCenter | Qt.AlignmentFlag.AlignVCenter)
+
+        self.setCentralWidget(label)
         self.show()
 
     def log_click(self, is_checked):
