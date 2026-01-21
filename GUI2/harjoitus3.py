@@ -20,7 +20,7 @@ class MainWindow(QMainWindow):
 
         # Label
         label = QLabel(start_color)
-        label.setAutoFillBackground(True)
+        # label.setAutoFillBackground(True)
         font = label.font()
         font.setPointSize(30)
         label.setFont(font)
@@ -51,9 +51,11 @@ class MainWindow(QMainWindow):
         self.show()
     
     def set_label_color(self, color:str):
-        palette = self.label.palette()
-        palette.setColor(QPalette.ColorRole.Window, QColor(color))
-        self.label.setPalette(palette)
+        # palette = self.label.palette()
+        # palette.setColor(QPalette.ColorRole.Window, QColor(color))
+        # self.label.setPalette(palette)
+        self.setStyleSheet(f'QLabel {{ background-color: {color}; border-radius: 15px; }}')
+
 
 app = QApplication()
 window = MainWindow()
