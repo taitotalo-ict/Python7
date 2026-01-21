@@ -34,6 +34,4 @@ main_layout.addLayout(layout)
 
 window.setLayout(main_layout)
 
-
-
 app.exec()
