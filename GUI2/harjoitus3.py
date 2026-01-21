@@ -21,6 +21,7 @@ class MainWindow(QMainWindow):
         # Label
         label = QLabel(start_color)
         # label.setAutoFillBackground(True)
+        self.setAttribute(Qt.WidgetAttribute.WA_StyledBackground, True) # Linux
         font = label.font()
         font.setPointSize(30)
         label.setFont(font)
