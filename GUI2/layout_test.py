@@ -5,10 +5,12 @@ window = QWidget()
 window.show()
 
 # layout = QVBoxLayout(window)
+
 # layout = QHBoxLayout()
 # layout.addWidget(QPushButton('Yksi'))
 # layout.addWidget(QPushButton('Kaksi'))
 # layout.addWidget(QPushButton('Kolme'))
+
 # layout = QGridLayout()
 # layout.addWidget(QPushButton('Yksi'), 0, 0)
 # layout.addWidget(QPushButton('Kaksi'), 0, 1)
