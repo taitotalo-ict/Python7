@@ -5,6 +5,7 @@ from PySide6.QtWidgets import (
     QPushButton,
 )
 
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -14,7 +15,7 @@ class MainWindow(QMainWindow):
         self.setCentralWidget(button)
 
     def open_dialog(self):
-        result = QMessageBox.warning(self, 'title', 'Hello', buttons=QMessageBox.Ok|QMessageBox.Cancel)
+        result = QMessageBox.warning(self, 'title', 'Hello', buttons=QMessageBox.StandardButton.Ok|QMessageBox.StandardButton.Cancel)
         if result == QMessageBox.StandardButton.Ok:
             print('Ok')
         elif result == QMessageBox.StandardButton.Cancel:
