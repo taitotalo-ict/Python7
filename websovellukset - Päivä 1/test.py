@@ -1,6 +1,23 @@
 from typing import Annotated
 from fastapi import FastAPI, Query, Path, Body
 from datetime import date
+from pydantic import BaseModel
+
+class UserBase(BaseModel):
+    username: str
+    first_name: str | None = None
+    last_name: str | None = None
+
+class UserIn(UserBase):
+    password: str
+
+class UserDB(UserBase):
+    id: int
+    password: str
+
+class UserOut(UserBase):
+    id: int
+
 
 app = FastAPI()
 
@@ -13,8 +30,12 @@ def read_users():
     return [{'user': 'Christian'}, {'user': 'Kerttuli'}]
 
 @app.post('/users')
-def create_user():
+def create_user(user: Annotated[UserIn, Body()]) -> UserOut:
+    # Luodaan käyttäjä tietokantaan
     pass
+    # Palautetaan luotu käyttäjä
+    return UserOut(id=5, **user.model_dump())
+    
 
 @app.get('/users/{user_id}')
 def read_user(user_id: int):
@@ -50,5 +71,9 @@ def test(val: bool, val2: Color, q: Annotated[int, Query(
 )]):
     return {'value': val, 'value2': val2, 'q': q}
 
+# /filter?tag=aaa&tag=bbb -> tags = ['aaa', 'bbb']
+@app.post('/filter')
+def filter_items(tags: Annotated[list[str], Body()]):
+    return {'tags': tags}
 
 
