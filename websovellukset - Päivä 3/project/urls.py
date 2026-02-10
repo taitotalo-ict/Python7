@@ -16,7 +16,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, register_converter
-from .views import homepage, HelloView, calendar, isocalendar
+from .views import homepage, HelloView, calendar, isocalendar, redirect_view, tag_view
 from .converters import FourDigitYearConverter, DateConverter
 # from . import views
 register_converter(FourDigitYearConverter, 'yyyy')
@@ -27,5 +27,7 @@ urlpatterns = [
     path('hello/<str:name>/', HelloView.as_view(), name='hello'),
     path('calendar/<yyyy:year>', calendar),
     path('isocalendar/<isodate:isodate>', isocalendar),
+    path('redirect/', redirect_view),
+    path('tags/', tag_view, name='tags'),
     path('', homepage, name='homepage'),
 ]
