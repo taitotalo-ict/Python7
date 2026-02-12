@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Query parameters</h1>
+    {% if not tags %}
+    <p>No query parameters have come with request</p>
+    {% else %}
+    <p>Following query parameters were found:</p>
+    <ul>
+        {% for name, value in tags.items %}
+        <li>{{ forloop.counter }}. {{ name }}: {{ value }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+</body>
+</html>

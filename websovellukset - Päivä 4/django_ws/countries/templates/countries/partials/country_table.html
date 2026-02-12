@@ -1,0 +1,22 @@
+    <table>
+        <thead>
+            <th>Name</th>
+            <th>Region</th>
+            <th>Area</th>
+            <th>Population</th>
+            <th>GDP</th>
+            <th>Action</th>
+        </thead>
+        <tbody>
+            {% for country in countries %}
+                <tr>
+                    <td>{{ country.name }}</td>
+                    <td>{{ country.region }}</td>
+                    <td>{{ country.area }}</td>
+                    <td>{{ country.population }}</td>
+                    <td>{{ country.gdp }}</td>
+                    <td><a href="{% url 'countries:modify' id=country.id %}">Modify</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>

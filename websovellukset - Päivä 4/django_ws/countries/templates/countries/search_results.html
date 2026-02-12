@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search results</title>
+    <style>
+        table {
+            border-collapse: collapse;
+        }
+
+        table, tr, td, th {
+            border: 1px solid;
+        }
+
+        td, th {
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    {% if countries %}
+        {% include "./partials/country_table.html" %}
+    {% else %}
+        <p>No results for this query.</p>
+    {% endif %}
+</body>
+</html>
