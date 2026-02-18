@@ -24,10 +24,12 @@ s.close()
 
 header, body = response.split(b'\r\n\r\n')
 header = header.decode('ascii')
+# Saada otsikot dict:nä
 headers = {k:v for row in header.split('\r\n')[1:] for k,v in [row.split(': ')]}
-print(headers['Content-Type'])
+
 print('### HEADER ###')
 print(header, '\n')
+
 print('### BODY ###')
 if headers['Content-Type'].startswith('text') or headers['Content-Type'] == 'image/svg+xml':
     print(body.decode('utf-8'))
