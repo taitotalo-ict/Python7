@@ -7,6 +7,7 @@ PORT = 1234
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.bind((HOST, PORT))
     s.listen(1)
+    print(f'Accepting connections on {HOST}:{PORT}')
     conn, addr = s.accept()
     print(f'Accepted connection from {addr}')
     with conn:
