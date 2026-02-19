@@ -12,4 +12,6 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as connection_socket:
             break
         connection_socket.sendall(message.encode())
         data = connection_socket.recv(4096)
+        if not data:
+            break
         print(f'Received: {data.decode()}')

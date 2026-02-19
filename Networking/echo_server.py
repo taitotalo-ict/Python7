@@ -7,11 +7,18 @@ PORT = 1234
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listening_socket:
     listening_socket.bind((HOST, PORT))
     listening_socket.listen(1)
-    print(f'Waiting for connections on {HOST}:{PORT}')
-    connection_socket, addr = listening_socket.accept()
-    print(f'Accepted connection from {addr[0]}:{addr[1]}')
-    with connection_socket:
-        while data := connection_socket.recv(4096):
-            print(f'Received: {data.decode()}')
-            connection_socket.sendall(data)
 
+    message = None
+    while message != 'exit':
+        print(f'Waiting for connections on {HOST}:{PORT}')
+        connection_socket, addr = listening_socket.accept()
+        print(f'Accepted connection from {addr[0]}:{addr[1]}')
+        with connection_socket:
+            while data := connection_socket.recv(4096):
+                message = data.decode()
+                print(f'Received: {message}')
+                if message == 'exit':
+                    break
+                connection_socket.sendall(data)
+        # if message == 'exit':
+        #     break
