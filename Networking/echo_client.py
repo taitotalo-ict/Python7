@@ -3,9 +3,13 @@ import socket
 HOST = '127.0.0.1'
 PORT = 1234
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.connect((HOST, PORT))
-    s.send(b'Hello world')
-    data = s.recv(4096)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as connection_socket:
+    connection_socket.connect((HOST, PORT))
 
-print(f'Received: {data.decode()}')
+    while True:
+        message = input('Message (q -> quit): ')
+        if message == 'q':
+            break
+        connection_socket.sendall(message.encode())
+        data = connection_socket.recv(4096)
+        print(f'Received: {data.decode()}')

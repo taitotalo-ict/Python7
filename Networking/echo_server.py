@@ -4,14 +4,14 @@ HOST = '127.0.0.1'      # Localhost
                         # None / '' / '0.0.0.0' = All interfaces
 PORT = 1234
 
-with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-    s.bind((HOST, PORT))
-    s.listen(1)
-    print(f'Accepting connections on {HOST}:{PORT}')
-    conn, addr = s.accept()
-    print(f'Accepted connection from {addr}')
-    with conn:
-        data = conn.recv(4096)
-        print(data.decode())
-        conn.send(data)
+with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as listening_socket:
+    listening_socket.bind((HOST, PORT))
+    listening_socket.listen(1)
+    print(f'Waiting for connections on {HOST}:{PORT}')
+    connection_socket, addr = listening_socket.accept()
+    print(f'Accepted connection from {addr[0]}:{addr[1]}')
+    with connection_socket:
+        while data := connection_socket.recv(4096):
+            print(f'Received: {data.decode()}')
+            connection_socket.sendall(data)
 
